@@ -55,7 +55,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyB5NbG37iq_bJhBlHzQKXLB7Gce0e_vEak',
-    appId: '1:494148558291:android:9be1b4060db32e3bc0a326',
+    appId: '1:494148558291:android:0f748672ac7f79dfc0a326',
     messagingSenderId: '494148558291',
     projectId: 'base-flutter-25bd3',
     storageBucket: 'base-flutter-25bd3.appspot.com',
@@ -63,19 +63,19 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyADbQ8CzjrmX8cenTDoxEJBSaiY9AT2T_Y',
-    appId: '1:494148558291:ios:b40ad2a0c256ac25c0a326',
+    appId: '1:494148558291:ios:bf2784b4c5f86fccc0a326',
     messagingSenderId: '494148558291',
     projectId: 'base-flutter-25bd3',
     storageBucket: 'base-flutter-25bd3.appspot.com',
-    iosBundleId: 'com.example.baseGetx',
+    iosBundleId: 'com.anhntn.baseGetx',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyADbQ8CzjrmX8cenTDoxEJBSaiY9AT2T_Y',
-    appId: '1:494148558291:ios:a6959662af96b885c0a326',
+    appId: '1:494148558291:ios:084c44ee781a72eac0a326',
     messagingSenderId: '494148558291',
     projectId: 'base-flutter-25bd3',
     storageBucket: 'base-flutter-25bd3.appspot.com',
-    iosBundleId: 'com.example.baseGetx.RunnerTests',
+    iosBundleId: 'com.anhntn.baseGetx.RunnerTests',
   );
 }
