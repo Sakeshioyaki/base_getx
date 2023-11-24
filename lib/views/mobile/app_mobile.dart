@@ -1,12 +1,12 @@
 import 'package:base_getx/app_ctrl.dart';
 import 'package:base_getx/commons/app_colors.dart';
 import 'package:base_getx/generated/l10n.dart';
+import 'package:base_getx/views/mobile/sign_up/sign_up_vm.dart';
 import 'package:base_getx/views/mobile/splash/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:overlay_support/overlay_support.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 
 class AppMobile extends StatefulWidget {
   const AppMobile({Key? key}) : super(key: key);
@@ -19,7 +19,7 @@ class _AppMobileState extends State<AppMobile> {
   late AppCtrl appCtrl = Get.find<AppCtrl>();
 
   @override
-  void initState() {
+  Future<void> initState() async {
     super.initState();
     appCtrl.appInitData();
     SystemChrome.setPreferredOrientations(
