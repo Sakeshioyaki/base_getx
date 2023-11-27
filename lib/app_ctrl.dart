@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:ui';
 
 import 'package:base_getx/commons/enums/app_constants.dart';
+import 'package:base_getx/commons/enums/enums.dart';
 import 'package:base_getx/database/shared_preference.dart';
 import 'package:base_getx/utils/logger.dart';
 import 'package:flutter/material.dart';
@@ -9,9 +10,16 @@ import 'package:get/get.dart';
 
 class AppCtrl extends GetxController {
   static AppCtrl get find => Get.find<AppCtrl>();
-  Locale currentLocate =  Locale( Platform.localeName);
+  LanguageType currentLanguage = LanguageType.ENGLISH;
+  LanguageTypeHelper helper = LanguageTypeHelper();
+
   bool isLogin = false;
-  String languageCode = '';
+  List<LanguageType> languages = [
+    LanguageType.ENGLISH,
+    LanguageType.JAPAN,
+    LanguageType.KOREA,
+    LanguageType.VIETNAM,
+  ];
 
   Future<void> checkLogin() async {
     print('>>> ${Platform.localeName}');
@@ -29,16 +37,18 @@ class AppCtrl extends GetxController {
       SharedPreference.getLanguage().then((value) {
         if (value != null) {
           setLocate(value);
-          languageCode = value;
+          currentLanguage = helper.languageType(value);
         } else {
           var currentLanguagePhone = Platform.localeName;
-          languageCode = AppConstants.languageJa;
           if (currentLanguagePhone.isNotEmpty) {
             if (['en', 'ja', 'ko', 'vi'].contains(currentLanguagePhone)) {
-              languageCode = currentLanguagePhone;
+              setLocate(currentLanguagePhone);
             }
+          } else {
+            currentLanguage = LanguageType.ENGLISH;
+            Get.updateLocale(const Locale(AppConstants.languageEn));
+            update();
           }
-          setLocate(languageCode);
         }
       });
       update();
@@ -57,11 +67,11 @@ class AppCtrl extends GetxController {
       countryCode = splitLanguageCode.last;
     }
 
-    currentLocate = Locale(languageCode, countryCode ?? '');
+    var currentLocate = Locale(languageCode, countryCode ?? '');
+    currentLanguage = helper.languageType(languageCode);
     Get.updateLocale(currentLocate);
-    languageCode = code;
-    await SharedPreference.setLanguage(code);
+    update();
+    await SharedPreference.setLanguage(languageCode);
     update();
   }
-
 }

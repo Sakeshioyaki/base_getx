@@ -6,7 +6,7 @@ import 'package:base_getx/views/mobile/home/home_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class LanguageVm extends GetxController{
+class LanguageVm extends GetxController {
   AppCtrl appCtrl = Get.find();
   LanguageType? languageSelected;
   LanguageType? currentLanguage;
@@ -19,10 +19,10 @@ class LanguageVm extends GetxController{
   ];
   final LanguageTypeHelper _helper = LanguageTypeHelper();
 
-  void init(){
-    final curr = languages.firstWhere((e){
+  void init() {
+    final curr = languages.firstWhere((e) {
       final languageCode = _helper.languageCode(e);
-      return languageCode == appCtrl.languageCode;
+      return languageCode == _helper.languageCode(appCtrl.currentLanguage);
     });
     currentLanguage = curr;
     languageSelected = curr;
@@ -45,9 +45,9 @@ class LanguageVm extends GetxController{
       try {
         if (!isSplash) {
           HomeVm homeVm = Get.put(HomeVm());
-        }else{
+        } else {
           Get.offAll(
-                () => const HomePage(),
+            () => const HomePage(),
             transition: Transition.rightToLeftWithFade,
           );
         }

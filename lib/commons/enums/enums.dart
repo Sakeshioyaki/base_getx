@@ -21,4 +21,19 @@ class LanguageTypeHelper {
         return AppConstants.languageKo;
     }
   }
+
+  LanguageType languageType(String languageCode) {
+    switch (languageCode) {
+      case 'ja':
+        return LanguageType.JAPAN;
+      case 'en':
+        return LanguageType.ENGLISH;
+      case 'ko':
+        return LanguageType.KOREA;
+      case 'vn':
+        return LanguageType.VIETNAM;
+      default:
+        return LanguageType.ENGLISH;
+    }
+  }
 }

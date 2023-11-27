@@ -1,5 +1,6 @@
 import 'package:base_getx/app_ctrl.dart';
 import 'package:base_getx/commons/app_colors.dart';
+import 'package:base_getx/commons/enums/enums.dart';
 import 'package:base_getx/views/mobile/splash/splash_binding.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,6 +13,8 @@ class AppMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    LanguageTypeHelper helper = LanguageTypeHelper();
+
     return GetBuilder<AppCtrl>(builder: (logic) {
       return OverlaySupport(
         child: GetMaterialApp(
@@ -42,7 +45,7 @@ class AppMobile extends StatelessWidget {
           //   Locale('ko', ''), // Korean
           //   Locale('vi', ''), // Korean
           // ],
-          // locale: logic.currentLocate,
+          locale: Locale(helper.languageCode(logic.currentLanguage)),
           debugShowCheckedModeBanner: false,
           textDirection: TextDirection.ltr,
         ),
