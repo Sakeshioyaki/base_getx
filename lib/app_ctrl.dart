@@ -49,15 +49,15 @@ class AppCtrl extends GetxController {
 
   Future<void> setLocate(String code) async {
     final splitLanguageCode = code.split("-");
-    String _languageCode = code;
+    String languageCode = code;
     String? countryCode;
 
     if (splitLanguageCode.length == 2) {
-      _languageCode = splitLanguageCode.first;
+      languageCode = splitLanguageCode.first;
       countryCode = splitLanguageCode.last;
     }
 
-    currentLocate = Locale(_languageCode, countryCode ?? '');
+    currentLocate = Locale(languageCode, countryCode ?? '');
     Get.updateLocale(currentLocate);
     languageCode = code;
     await SharedPreference.setLanguage(code);

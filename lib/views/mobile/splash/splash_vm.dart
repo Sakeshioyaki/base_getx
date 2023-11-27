@@ -21,6 +21,13 @@ class SplashVm extends GetxController {
   LoadStatus onLoad = LoadStatus.initial;
   bool isFirst = false;
 
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    init();
+  }
+
   void init() async {
     onLoad = LoadStatus.loading;
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -69,9 +76,11 @@ class SplashVm extends GetxController {
         //   () => const LoginPage(),
         //   transition: Transition.rightToLeftWithFade,
         // );
-        Get.offAll(() => const SignUpPage(),
-            transition: Transition.rightToLeftWithFade,
-            binding: SignUpBinding());
+        Get.offAll(
+          () => const SignUpPage(),
+          transition: Transition.rightToLeftWithFade,
+          binding: SignUpBinding(),
+        );
       }
     }
   }

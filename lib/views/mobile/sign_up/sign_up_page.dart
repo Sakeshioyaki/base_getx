@@ -9,16 +9,10 @@ class SignUpPage extends GetView<SignUpVm> {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: () {
-        controller.updateColor();
-      },
-      child: Container(
-        height: 100,
-        width: 100,
-        color: controller.selectColor,
-              child: const Text('Anh'),
-      ),
+    return Scaffold(
+      body: Column(children: [
+        
+      ],),
     );
   }
 }
