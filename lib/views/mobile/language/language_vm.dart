@@ -1,6 +1,7 @@
 import 'package:base_getx/app_ctrl.dart';
 import 'package:base_getx/commons/enums/enums.dart';
 import 'package:base_getx/utils/logger.dart';
+import 'package:base_getx/views/mobile/home/home_binding.dart';
 import 'package:base_getx/views/mobile/home/home_page.dart';
 import 'package:base_getx/views/mobile/home/home_vm.dart';
 import 'package:flutter/material.dart';
@@ -44,11 +45,11 @@ class LanguageVm extends GetxController {
       await appCtrl.setLocate(languageCode);
       try {
         if (!isSplash) {
-          HomeVm homeVm = Get.put(HomeVm());
         } else {
           Get.offAll(
             () => const HomePage(),
             transition: Transition.rightToLeftWithFade,
+            binding: HomeBinding()
           );
         }
       } catch (e) {

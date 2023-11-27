@@ -1,6 +1,7 @@
 import 'package:base_getx/app_ctrl.dart';
 import 'package:base_getx/commons/app_colors.dart';
 import 'package:base_getx/commons/enums/enums.dart';
+import 'package:base_getx/generated/l10n.dart';
 import 'package:base_getx/views/mobile/splash/splash_binding.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -45,7 +46,7 @@ class AppMobile extends StatelessWidget {
           //   Locale('ko', ''), // Korean
           //   Locale('vi', ''), // Korean
           // ],
-          locale: Locale(helper.languageCode(logic.currentLanguage)),
+          // locale: Locale(helper.languageCode(logic.currentLanguage)),
           debugShowCheckedModeBanner: false,
           textDirection: TextDirection.ltr,
         ),

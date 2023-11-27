@@ -57,6 +57,12 @@ class AppCtrl extends GetxController {
     }
   }
 
+  void updateLanguage(LanguageType language) {
+    Get.updateLocale(Locale(helper.languageCode(language)));
+    currentLanguage = language;
+    update();
+  }
+
   Future<void> setLocate(String code) async {
     final splitLanguageCode = code.split("-");
     String languageCode = code;
