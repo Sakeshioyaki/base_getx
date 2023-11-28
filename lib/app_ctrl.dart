@@ -1,25 +1,17 @@
 import 'dart:io';
 import 'dart:ui';
 
-import 'package:base_getx/commons/enums/app_constants.dart';
-import 'package:base_getx/commons/enums/enums.dart';
 import 'package:base_getx/database/shared_preference.dart';
+import 'package:base_getx/l10n/localization.dart';
 import 'package:base_getx/utils/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AppCtrl extends GetxController {
   static AppCtrl get find => Get.find<AppCtrl>();
-  LanguageType currentLanguage = LanguageType.ENGLISH;
-  LanguageTypeHelper helper = LanguageTypeHelper();
-
   bool isLogin = false;
-  List<LanguageType> languages = [
-    LanguageType.ENGLISH,
-    LanguageType.JAPAN,
-    LanguageType.KOREA,
-    LanguageType.VIETNAM,
-  ];
+  //  'en_US', 'vi_VN', 'ja_jp', 'ko_KR',
+  Locale currentLocale = LocalizationService.locales[0];
 
   Future<void> checkLogin() async {
     print('>>> ${Platform.localeName}');
@@ -34,50 +26,31 @@ class AppCtrl extends GetxController {
 
   void appInitData() async {
     try {
-      SharedPreference.getLanguage().then((value) {
+      SharedPreference.getLanguage().then((value) async {
         if (value != null) {
-          setLocate(value);
-          currentLanguage = helper.languageType(value);
+          setLocate(LocalizationService.getLocaleLanguage(value));
         } else {
-          var currentLanguagePhone = Platform.localeName;
-          if (currentLanguagePhone.isNotEmpty) {
-            if (['en', 'ja', 'ko', 'vi'].contains(currentLanguagePhone)) {
+          var currentLanguagePhone = Get.deviceLocale;
+          if (currentLanguagePhone != null) {
+            if (LocalizationService.locales.contains(currentLanguagePhone)) {
               setLocate(currentLanguagePhone);
             }
           } else {
-            currentLanguage = LanguageType.ENGLISH;
-            Get.updateLocale(const Locale(AppConstants.languageEn));
-            update();
+            currentLocale = LocalizationService.fallbackLocale;
+            setLocate(LocalizationService.fallbackLocale);
           }
         }
       });
-      update();
     } catch (e) {
       logger.e(e);
     }
   }
 
-  void updateLanguage(LanguageType language) {
-    Get.updateLocale(Locale(helper.languageCode(language)));
-    currentLanguage = language;
-    update();
-  }
-
-  Future<void> setLocate(String code) async {
-    final splitLanguageCode = code.split("-");
-    String languageCode = code;
-    String? countryCode;
-
-    if (splitLanguageCode.length == 2) {
-      languageCode = splitLanguageCode.first;
-      countryCode = splitLanguageCode.last;
-    }
-
-    var currentLocate = Locale(languageCode, countryCode ?? '');
-    currentLanguage = helper.languageType(languageCode);
-    Get.updateLocale(currentLocate);
-    update();
-    await SharedPreference.setLanguage(languageCode);
+  Future<void> setLocate(Locale locale) async {
+    currentLocale = locale;
+    Get.updateLocale(locale);
+    //just using language code Ex: en_US -> en
+    await SharedPreference.setLanguage(locale.languageCode);
     update();
   }
 }

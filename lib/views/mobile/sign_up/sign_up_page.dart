@@ -1,8 +1,8 @@
 import 'package:base_getx/app_ctrl.dart';
 import 'package:base_getx/commons/enums/app_constants.dart';
-import 'package:base_getx/commons/enums/enums.dart';
 import 'package:base_getx/generated/l10n.dart';
 import 'package:base_getx/l10n/enum_dictionary.dart';
+import 'package:base_getx/l10n/localization.dart';
 import 'package:base_getx/views/mobile/sign_up/sign_up_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,16 +15,15 @@ class SignUpPage extends GetView<SignUpVm> {
   @override
   Widget build(BuildContext context) {
     AppCtrl appCtrl = Get.find<AppCtrl>();
-    LanguageTypeHelper helper = LanguageTypeHelper();
-    List<DropdownMenuItem<LanguageType>> listItem = [];
-    for (var e in appCtrl.languages) {
+    List<DropdownMenuItem<Locale>> listItem = [];
+    LocalizationService.langs.forEach((key, value) {
       listItem.add(
         DropdownMenuItem(
-          value: e,
-          child: Text(helper.languageCode(e)),
+          value: LocalizationService.getLocaleLanguage(key),
+          child: Text(value),
         ),
       );
-    }
+    });
     return Scaffold(
       body: SafeArea(
         child: GetBuilder<AppCtrl>(builder: (logic) {
@@ -35,21 +34,19 @@ class SignUpPage extends GetView<SignUpVm> {
               children: [
                 Align(
                   alignment: Alignment.centerRight,
-                  child: DropdownButton<LanguageType>(
+                  child: DropdownButton<Locale>(
                     items: listItem,
-                    value: logic.currentLanguage,
+                    value: logic.currentLocale,
                     onChanged: (selectValue) {
-                      String languageCode = helper
-                          .languageCode(selectValue ?? LanguageType.ENGLISH);
-                      if (Get.locale?.languageCode != languageCode) {
-                        appCtrl.updateLanguage(
-                            selectValue ?? LanguageType.ENGLISH);
+                      if (logic.currentLocale != selectValue) {
+                        appCtrl.setLocate(
+                            selectValue ?? LocalizationService.locales[0]);
                       }
                     },
                   ),
                 ),
                 Text(
-                  Dictionary.create_account,
+                  Dictionary.create_account.tr,
                   style: const TextStyle(
                     color: Colors.black,
                     fontSize: 25,
