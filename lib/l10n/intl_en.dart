@@ -1,6 +1,7 @@
 import 'package:base_getx/l10n/enum_dictionary.dart';
 
 Map<String, String> en = {
+  Dictionary.system_error: "System error",
   Dictionary.restore_done: "done",
   Dictionary.txt_url_warning: "txt_url_warning",
   Dictionary.create_account: "Create Account",

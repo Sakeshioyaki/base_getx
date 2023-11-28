@@ -1,5 +1,6 @@
 import 'package:base_getx/app_ctrl.dart';
 import 'package:base_getx/flavor.dart';
+import 'package:base_getx/services/firebase_services.dart';
 import 'package:base_getx/views/mobile/app_mobile.dart';
 import 'package:base_getx/firebase_options.dart';
 import 'package:base_getx/utils/logger.dart';
@@ -10,6 +11,8 @@ import 'dart:io' show Platform;
 import 'package:get/get.dart';
 
 Future initService() async {
+  await Get.putAsync(() => FirebaseServices().init());
+
   Get.put<AppCtrl>(AppCtrl());
 }
 

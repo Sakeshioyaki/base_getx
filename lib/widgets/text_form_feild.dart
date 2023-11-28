@@ -3,23 +3,29 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class TextFieldCommon extends StatelessWidget {
+  final TextEditingController? controller;
   final String? hintText;
   final TextStyle? hintStyle;
   final String? Function(String?)? validator;
   final Widget? suffixIcon;
+  final bool obscureText;
 
   const TextFieldCommon({
     super.key,
+    this.controller,
     this.hintText,
     this.hintStyle,
     this.validator,
     this.suffixIcon,
+    this.obscureText = false,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       validator: validator,
+      controller: controller,
+      obscureText: obscureText,
       decoration: InputDecoration(
         hintText: hintText?.tr,
         hintStyle: hintStyle,

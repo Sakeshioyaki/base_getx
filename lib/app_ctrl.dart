@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:base_getx/database/shared_preference.dart';
 import 'package:base_getx/l10n/localization.dart';
+import 'package:base_getx/modals/user_model.dart';
 import 'package:base_getx/utils/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,6 +13,7 @@ class AppCtrl extends GetxController {
   bool isLogin = false;
   //  'en_US', 'vi_VN', 'ja_jp', 'ko_KR',
   Locale currentLocale = LocalizationService.locales[0];
+  UserModel? currentUser ;
 
   Future<void> checkLogin() async {
     print('>>> ${Platform.localeName}');
@@ -51,6 +53,11 @@ class AppCtrl extends GetxController {
     Get.updateLocale(locale);
     //just using language code Ex: en_US -> en
     await SharedPreference.setLanguage(locale.languageCode);
+    update();
+  }
+
+  void setCurrentUser( UserModel user){
+    currentUser = user;
     update();
   }
 }

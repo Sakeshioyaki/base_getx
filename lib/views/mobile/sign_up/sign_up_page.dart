@@ -19,10 +19,11 @@ class SignUpPage extends GetView<SignUpVm> {
   SignUpPage({super.key, this.tag});
 
   final _formKey = GlobalKey<FormState>();
+  SignUpVm signUpVm = Get.find<SignUpVm>();
+  AppCtrl appCtrl = Get.find<AppCtrl>();
 
   @override
   Widget build(BuildContext context) {
-    AppCtrl appCtrl = Get.find<AppCtrl>();
     List<DropdownMenuItem<Locale>> listItem = [];
     LocalizationService.langs.forEach((key, value) {
       listItem.add(
@@ -117,12 +118,13 @@ class SignUpPage extends GetView<SignUpVm> {
                           Align(
                             alignment: Alignment.center,
                             child: InkWell(
-                              onTap: (){
+                              onTap: () {
                                 if (_formKey.currentState!.validate()) {
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(content: Text('Processing Data')),
+                                    const SnackBar(
+                                        content: Text('Processing Data')),
                                   );
-                                }
+                                } else {}
                               },
                               child: Container(
                                 decoration: const BoxDecoration(
@@ -271,9 +273,7 @@ class SignUpPage extends GetView<SignUpVm> {
           ),
         ),
         InkWell(
-          onTap: (){
-
-          },
+          onTap: () {},
           child: Container(
             width: Get.width * 0.43,
             decoration: ShapeDecoration(
@@ -363,6 +363,7 @@ class SignUpPage extends GetView<SignUpVm> {
         }
         return null;
       },
+      controller: signUpVm.emailCtrl,
       hintText: Dictionary.email.tr,
       hintStyle: const TextStyle(
         color: Color(0xC1978F8F),
@@ -388,6 +389,7 @@ class SignUpPage extends GetView<SignUpVm> {
         return null;
       },
       hintText: Dictionary.user_name.tr,
+      controller: signUpVm.userNameCtrl,
       hintStyle: const TextStyle(
         color: AppColors.mainTextColor,
         fontSize: 14,
@@ -411,6 +413,8 @@ class SignUpPage extends GetView<SignUpVm> {
         }
         return null;
       },
+      obscureText: true,
+      controller: signUpVm.passCtrl,
       hintText: Dictionary.password.tr,
       hintStyle: const TextStyle(
         color: AppColors.mainTextColor,
