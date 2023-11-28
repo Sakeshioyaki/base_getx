@@ -5,5 +5,9 @@ Map<String, String> en = {
   Dictionary.txt_url_warning: "txt_url_warning",
   Dictionary.create_account: "Create Account",
   Dictionary.email: "Email",
-  Dictionary.email_require : 'Please enter email',
+  Dictionary.user_name: "User name",
+  Dictionary.password: "Password",
+  Dictionary.email_require: "Please enter email",
+  Dictionary.username_require: 'Please enter user name',
+  Dictionary.password_require: 'Please enter password'
 };

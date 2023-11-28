@@ -5,6 +5,9 @@ Map<String, String> ja = {
   Dictionary.txt_url_warning: "外部のページへ移動します。よろしいですか？",
   Dictionary.create_account: "アカウントの作成",
   Dictionary.email: "メールアドレス",
-  Dictionary.email_require : 'メールアドレスを入力してください',
-
+  Dictionary.user_name: "ユーザー名",
+  Dictionary.password: "パスワード",
+  Dictionary.email_require: 'メールアドレスを入力してください',
+  Dictionary.username_require: 'ユーザー名を入力してください',
+  Dictionary.password_require: 'パスワードを入力してください',
 };
