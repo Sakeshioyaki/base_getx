@@ -1,3 +1,4 @@
+import 'package:base_getx/commons/enums/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -37,6 +38,16 @@ class TextFieldCommon extends StatelessWidget {
             width: 2,
             color: Colors.red,
           ),
+        ),
+        focusedErrorBorder: const OutlineInputBorder(
+          borderSide: BorderSide(
+            width: 2,
+            color: Color(0xC1978F8F),
+          ),
+        ),
+        errorStyle: const TextStyle(
+          color: Colors.red,
+          fontFamily: AppConstants.fontK2D,
         ),
       ),
     );

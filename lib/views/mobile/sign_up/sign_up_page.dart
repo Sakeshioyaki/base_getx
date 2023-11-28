@@ -117,6 +117,13 @@ class SignUpPage extends GetView<SignUpVm> {
                           Align(
                             alignment: Alignment.center,
                             child: InkWell(
+                              onTap: (){
+                                if (_formKey.currentState!.validate()) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(content: Text('Processing Data')),
+                                  );
+                                }
+                              },
                               child: Container(
                                 decoration: const BoxDecoration(
                                   borderRadius:
@@ -264,6 +271,9 @@ class SignUpPage extends GetView<SignUpVm> {
           ),
         ),
         InkWell(
+          onTap: (){
+
+          },
           child: Container(
             width: Get.width * 0.43,
             decoration: ShapeDecoration(
@@ -401,7 +411,7 @@ class SignUpPage extends GetView<SignUpVm> {
         }
         return null;
       },
-      hintText: Dictionary.email.tr,
+      hintText: Dictionary.password.tr,
       hintStyle: const TextStyle(
         color: AppColors.mainTextColor,
         fontSize: 14,
