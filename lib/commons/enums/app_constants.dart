@@ -1,5 +1,6 @@
 class AppConstants {
   static const  String fontInter = 'Inter';
+  static const  String fontK2D = 'K2D';
   /// key language
   static const String languageJa = 'ja';
   static const String languageEn = 'en';

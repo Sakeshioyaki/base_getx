@@ -60,7 +60,7 @@ class SplashVm extends GetxController {
       //   transition: Transition.rightToLeftWithFade,
       // );
       Get.offAll(
-        () => const SignUpPage(),
+        () => SignUpPage(),
         transition: Transition.rightToLeftWithFade,
         binding: SignUpBinding(),
       );
@@ -77,7 +77,7 @@ class SplashVm extends GetxController {
         //   transition: Transition.rightToLeftWithFade,
         // );
         Get.offAll(
-          () => const SignUpPage(),
+          () => SignUpPage(),
           transition: Transition.rightToLeftWithFade,
           binding: SignUpBinding(),
         );

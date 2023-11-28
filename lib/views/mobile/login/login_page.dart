@@ -29,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
             TextButton(
               onPressed: () {
                 Get.to(
-                  () => const SignUpPage(),
+                  () => SignUpPage(),
                   transition: Transition.rightToLeftWithFade,
                   duration: const Duration(milliseconds: 200),
                 );

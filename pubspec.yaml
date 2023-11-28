@@ -44,6 +44,7 @@ dependencies:
   intl: ^0.18.0
   shared_preferences: ^2.2.2
   firebase_core: ^2.21.0
+  flutter_svg: ^2.0.9
 
 
 dev_dependencies:
@@ -107,15 +108,19 @@ flutter:
   fonts:
     - family: Inter
       fonts:
-        - asset: assets/fonts/Inter-Black.ttf
-        - asset: assets/fonts/Inter-Bold.ttf
-        - asset: assets/fonts/Inter-ExtraBold.ttf
-        - asset: assets/fonts/Inter-ExtraLight.ttf
-        - asset: assets/fonts/Inter-Light.ttf
-        - asset: assets/fonts/Inter-Medium.ttf
-        - asset: assets/fonts/Inter-Regular.ttf
-        - asset: assets/fonts/Inter-SemiBold.ttf
-        - asset: assets/fonts/Inter-Thin.ttf
+        - asset: assets/fonts/inter/Inter-Bold.ttf
+        - asset: assets/fonts/inter/Inter-Light.ttf
+        - asset: assets/fonts/inter/Inter-Medium.ttf
+        - asset: assets/fonts/inter/Inter-Regular.ttf
+        - asset: assets/fonts/inter/Inter-Thin.ttf
+    - family: K2D
+      fonts:
+        - asset: assets/fonts/k2d/K2D-Regular.ttf
+        - asset: assets/fonts/k2d/K2D-Thin.ttf
+        - asset: assets/fonts/k2d/K2D-Medium.ttf
+        - asset: assets/fonts/k2d/K2D-Light.ttf
+        - asset: assets/fonts/k2d/K2D-Italic.ttf
+        - asset: assets/fonts/k2d/K2D-Bold.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
