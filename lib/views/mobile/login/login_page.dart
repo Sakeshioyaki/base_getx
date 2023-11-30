@@ -1,7 +1,6 @@
 import 'package:base_getx/commons/app_colors.dart';
 import 'package:base_getx/commons/app_images.dart';
 import 'package:base_getx/commons/enums/app_constants.dart';
-import 'package:base_getx/generated/l10n.dart';
 import 'package:base_getx/l10n/enum_dictionary.dart';
 import 'package:base_getx/views/mobile/login/login_vm.dart';
 import 'package:base_getx/views/mobile/sign_up/sign_up_binding.dart';
@@ -75,7 +74,12 @@ class LoginPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 30),
                     Container(
-                      color: const Color(0x77FFFFFF),
+                      decoration: const BoxDecoration(
+                        color: Color(0x77FFFFFF),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                      ),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 20, vertical: 30),
@@ -170,7 +174,6 @@ class LoginPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 32),
                     buildTextNoAccount(),
-                    const SizedBox(height: 300),
                   ],
                 ),
               ),
