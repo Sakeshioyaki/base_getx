@@ -19,8 +19,8 @@ class SignUpPage extends GetView<SignUpVm> {
   SignUpPage({super.key, this.tag});
 
   final _formKey = GlobalKey<FormState>();
-  SignUpVm signUpVm = Get.find<SignUpVm>();
-  AppCtrl appCtrl = Get.find<AppCtrl>();
+  final SignUpVm signUpVm = Get.find<SignUpVm>();
+  final AppCtrl appCtrl = Get.find<AppCtrl>();
 
   @override
   Widget build(BuildContext context) {
@@ -117,42 +117,39 @@ class SignUpPage extends GetView<SignUpVm> {
                           const SizedBox(height: 50),
                           Align(
                             alignment: Alignment.center,
-                            child: InkWell(
-                              onTap: () {
-                                if (_formKey.currentState!.validate()) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                        content: Text('Processing Data')),
-                                  );
-                                } else {}
-                              },
-                              child: Container(
-                                decoration: const BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(5)),
-                                  gradient: LinearGradient(
-                                    begin: Alignment.topLeft,
-                                    end: Alignment.bottomRight,
-                                    colors: [
-                                      AppColors.lightYellow,
-                                      AppColors.lightViolet,
-                                    ],
-                                  ),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Color(0x3E000000),
-                                      blurRadius: 20,
-                                      offset: Offset(0, 4),
-                                      spreadRadius: 0,
-                                    ),
-                                    BoxShadow(
-                                      color: Color(0x19000000),
-                                      blurRadius: 4,
-                                      offset: Offset(0, 4),
-                                      spreadRadius: 0,
-                                    )
+                            child: Container(
+                              decoration: const BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(5)),
+                                gradient: LinearGradient(
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                  colors: [
+                                    AppColors.lightYellow,
+                                    AppColors.lightViolet,
                                   ],
                                 ),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Color(0x3E000000),
+                                    blurRadius: 20,
+                                    offset: Offset(0, 4),
+                                    spreadRadius: 0,
+                                  ),
+                                  BoxShadow(
+                                    color: Color(0x19000000),
+                                    blurRadius: 4,
+                                    offset: Offset(0, 4),
+                                    spreadRadius: 0,
+                                  )
+                                ],
+                              ),
+                              child: InkWell(
+                                onTap: () async {
+                                  if (_formKey.currentState!.validate()) {
+                                    await signUpVm.singInByEmail();
+                                  }
+                                },
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(
                                     horizontal: 30,
@@ -343,7 +340,7 @@ class SignUpPage extends GetView<SignUpVm> {
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
                   Get.offAll(
-                    () => const LoginPage(),
+                    () => LoginPage(),
                     transition: Transition.rightToLeftWithFade,
                     binding: LoginBinding(),
                   );

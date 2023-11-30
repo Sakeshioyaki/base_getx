@@ -1,9 +1,11 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LoginVm extends GetxController{
-  @override
-  void onInit() {
-    // TODO: implement onInit
-    super.onInit();
+  final TextEditingController emailCtrl = TextEditingController();
+  final TextEditingController passCtrl = TextEditingController();
+
+  void loginByEmail(){
+
   }
 }

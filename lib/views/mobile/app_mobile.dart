@@ -15,8 +15,8 @@ class AppMobile extends StatelessWidget {
     return GetBuilder<AppCtrl>(builder: (logic) {
       return OverlaySupport(
         child: GetMaterialApp(
-          theme: ThemeData.from(colorScheme: AppColors.lightScheme),
-          darkTheme: ThemeData.from(colorScheme: AppColors.darkScheme),
+          // theme: ThemeData.from(colorScheme: AppColors.lightScheme),
+          // darkTheme: ThemeData.from(colorScheme: AppColors.darkScheme),
           themeMode: ThemeMode.light,
           opaqueRoute: Get.isOpaqueRouteDefault,
           popGesture: Get.isPopGestureEnable,

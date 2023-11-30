@@ -6,5 +6,8 @@ class AppImages {
   static const String icon_app = 'assets/icons/icon_app.png';
   static const String ic_facebook = 'assets/icons/facebook_icon.svg';
   static const String ic_google = 'assets/icons/google_icon.svg';
-
+  static const String ic_note_active = 'assets/icons/ic_note_active.png';
+  static const String ic_note_inactive = 'assets/icons/ic_note_inactive.png';
+  static const String ic_todo_active = 'assets/icons/ic_todo_active.png';
+  static const String ic_todo_inactive = 'assets/icons/ic_todo_inactive.png';
 }

@@ -23,7 +23,7 @@ class FirebaseServices extends GetxService {
   }) async {
     try {
       UserCredential userCredential = await _firebaseAuth
-          .createUserWithEmailAndPassword(email: password, password: password);
+          .createUserWithEmailAndPassword(email: email, password: password);
       if (userCredential.user != null) {
         UserModel user = UserModel(
           userId: userCredential.user!.uid.toString(),

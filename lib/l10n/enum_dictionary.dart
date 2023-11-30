@@ -9,4 +9,5 @@ class Dictionary{
    static String password_require = 'password_require';
    static String user_name = 'user_name';
    static String password = 'password';
+   static String forgot_password = 'forgot_password';
 }
