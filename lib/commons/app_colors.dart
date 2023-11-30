@@ -11,4 +11,5 @@ class AppColors {
   static const Color mainColorOrange = Color(0xFFed673a);
   static const Color white = Color(0xFFFFFFFF);
   static const Color subTextColor = Color(0xFF1B1B1B);
+  static const Color textGrow = Color(0xFF2A1E17);
 }

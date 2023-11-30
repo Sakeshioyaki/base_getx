@@ -26,6 +26,7 @@ class TextFieldCommon extends StatelessWidget {
       validator: validator,
       controller: controller,
       obscureText: obscureText,
+      // autofocus: true,
       decoration: InputDecoration(
         hintText: hintText?.tr,
         hintStyle: hintStyle,

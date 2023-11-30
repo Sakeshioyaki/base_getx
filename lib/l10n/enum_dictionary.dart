@@ -3,6 +3,7 @@ class Dictionary{
    static String restore_done = 'restore_done';
    static String txt_url_warning = 'txt_url_warning';
    static String create_account = 'create_account';
+   static String login = 'login';
    static String email ='email';
    static String email_require = 'email_require';
    static String username_require = 'username_require';

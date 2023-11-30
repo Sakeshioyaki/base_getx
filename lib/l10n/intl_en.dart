@@ -11,5 +11,6 @@ Map<String, String> en = {
   Dictionary.email_require: "Please enter email",
   Dictionary.username_require: 'Please enter user name',
   Dictionary.password_require: 'Please enter password',
-  Dictionary.forgot_password: 'Forgot password'
+  Dictionary.forgot_password: 'Forgot password',
+  Dictionary.login: 'Login',
 };

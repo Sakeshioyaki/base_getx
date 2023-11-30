@@ -12,4 +12,5 @@ Map<String, String> vi = {
   Dictionary.user_name : "Tên người dùng",
   Dictionary.password : "Mật khẩu",
   Dictionary.forgot_password: 'Quên mật khẩu',
+  Dictionary.login: 'Đăng nhập',
 };

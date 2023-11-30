@@ -12,4 +12,5 @@ Map<String, String> ja = {
   Dictionary.username_require: 'ユーザー名を入力してください',
   Dictionary.password_require: 'パスワードを入力してください',
   Dictionary.forgot_password: 'パスワードをお忘れですか',
+  Dictionary.login: 'ログイン',
 };

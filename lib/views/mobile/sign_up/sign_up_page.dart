@@ -7,6 +7,7 @@ import 'package:base_getx/l10n/localization.dart';
 import 'package:base_getx/views/mobile/login/login_binding.dart';
 import 'package:base_getx/views/mobile/login/login_page.dart';
 import 'package:base_getx/views/mobile/sign_up/sign_up_vm.dart';
+import 'package:base_getx/widgets/select_language.dart';
 import 'package:base_getx/widgets/text_form_feild.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -35,61 +36,26 @@ class SignUpPage extends GetView<SignUpVm> {
     });
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Center(
-          child: GetBuilder<AppCtrl>(builder: (logic) {
-            return Column(
-              children: [
-                Expanded(
-                  child: SingleChildScrollView(
-                    // physics:  const BouncingScrollPhysics(),
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                        right: 24,
-                        left: 24,
-                        top: 10,
-                        bottom: 40,
-                      ),
+      body: Center(
+        child: GetBuilder<AppCtrl>(builder: (logic) {
+          return Column(
+            children: [
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      right: 24,
+                      left: 24,
+                      top: 10,
+                      bottom: 40,
+                    ),
+                    child: SafeArea(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Align(
-                            alignment: Alignment.centerRight,
-                            child: DropdownButton<Locale>(
-                              items: listItem,
-                              value: logic.currentLocale,
-                              onChanged: (selectValue) {
-                                if (logic.currentLocale != selectValue) {
-                                  appCtrl.setLocate(selectValue ??
-                                      LocalizationService.locales[0]);
-                                }
-                              },
-                            ),
-                          ),
+                          const SelectLanguage(),
                           const SizedBox(height: 50),
-                          ShaderMask(
-                            shaderCallback: (Rect bounds) {
-                              return const RadialGradient(
-                                center: Alignment.topLeft,
-                                radius: 1.0,
-                                colors: [
-                                  Color(0x7FFF6348),
-                                  Color(0x7F5352ED),
-                                ],
-                                tileMode: TileMode.mirror,
-                              ).createShader(bounds);
-                            },
-                            child: Text(
-                              Dictionary.create_account.tr,
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 35,
-                                fontFamily: AppConstants.fontInter,
-                                fontWeight: FontWeight.w800,
-                                letterSpacing: 3.0,
-                              ),
-                            ),
-                          ),
+                          buildLoginText(),
                           const SizedBox(height: 10),
                           Image.asset(
                             AppImages.logo_app,
@@ -115,67 +81,96 @@ class SignUpPage extends GetView<SignUpVm> {
                           const SizedBox(height: 10),
                           buildTextNoAccount(),
                           const SizedBox(height: 50),
-                          Align(
-                            alignment: Alignment.center,
-                            child: Container(
-                              decoration: const BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(5)),
-                                gradient: LinearGradient(
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
-                                  colors: [
-                                    AppColors.lightYellow,
-                                    AppColors.lightViolet,
-                                  ],
-                                ),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Color(0x3E000000),
-                                    blurRadius: 20,
-                                    offset: Offset(0, 4),
-                                    spreadRadius: 0,
-                                  ),
-                                  BoxShadow(
-                                    color: Color(0x19000000),
-                                    blurRadius: 4,
-                                    offset: Offset(0, 4),
-                                    spreadRadius: 0,
-                                  )
-                                ],
-                              ),
-                              child: InkWell(
-                                onTap: () async {
-                                  if (_formKey.currentState!.validate()) {
-                                    await signUpVm.singInByEmail();
-                                  }
-                                },
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 30,
-                                    vertical: 10,
-                                  ),
-                                  child: Text(
-                                    Dictionary.create_account.tr,
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 20,
-                                      fontFamily: AppConstants.fontK2D,
-                                      fontWeight: FontWeight.w700,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          )
+                          buildButtonSignIn()
                         ],
                       ),
                     ),
                   ),
                 ),
-              ],
-            );
-          }),
+              ),
+            ],
+          );
+        }),
+      ),
+    );
+  }
+
+  ShaderMask buildLoginText() {
+    return ShaderMask(
+      shaderCallback: (Rect bounds) {
+        return const RadialGradient(
+          center: Alignment.topLeft,
+          radius: 1.0,
+          colors: [
+            Color(0x7FFF6348),
+            Color(0x7F5352ED),
+          ],
+          tileMode: TileMode.mirror,
+        ).createShader(bounds);
+      },
+      child: Text(
+        Dictionary.create_account.tr,
+        style: const TextStyle(
+          color: Colors.white,
+          fontSize: 35,
+          fontFamily: AppConstants.fontInter,
+          fontWeight: FontWeight.w800,
+          letterSpacing: 3.0,
+        ),
+      ),
+    );
+  }
+
+  Align buildButtonSignIn() {
+    return Align(
+      alignment: Alignment.center,
+      child: Container(
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(5)),
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              AppColors.lightYellow,
+              AppColors.lightViolet,
+            ],
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Color(0x3E000000),
+              blurRadius: 20,
+              offset: Offset(0, 4),
+              spreadRadius: 0,
+            ),
+            BoxShadow(
+              color: Color(0x19000000),
+              blurRadius: 4,
+              offset: Offset(0, 4),
+              spreadRadius: 0,
+            )
+          ],
+        ),
+        child: InkWell(
+          onTap: () async {
+            if (_formKey.currentState!.validate()) {
+              await signUpVm.singInByEmail();
+            }
+          },
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 30,
+              vertical: 10,
+            ),
+            child: Text(
+              Dictionary.create_account.tr,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+                fontFamily: AppConstants.fontK2D,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ),
         ),
       ),
     );

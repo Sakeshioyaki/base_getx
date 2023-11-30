@@ -12,4 +12,5 @@ Map<String, String> ko = {
   Dictionary.username_require: '사용자 이름을 입력하세요',
   Dictionary.password_require: '비밀번호를 입력 해주세요',
   Dictionary.forgot_password: '비밀번호를 잊으 셨나요',
+  Dictionary.login: '로그인',
 };

@@ -42,4 +42,9 @@ class FirebaseServices extends GetxService {
       print(e.message);
     }
   }
+
+  Future<void> loginByEmail()async {
+    // UserCredential userCredential = await _firebaseAuth
+    //     .createUserWithEmailAndPassword(email: email, password: password);
+  }
 }
