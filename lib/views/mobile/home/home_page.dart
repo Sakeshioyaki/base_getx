@@ -20,12 +20,15 @@ class HomePage extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.white,
           title: GetBuilder<AppCtrl>(builder: (appCtrl) {
-            return Text('Wellcome, ${appCtrl.currentUser?.userName}', style: TextStyle(color: AppColors.mainColorOrange),);
+            return Text(
+              'Welcome, ${appCtrl.currentUser?.userName}',
+              style: const TextStyle(color: AppColors.mainColorOrange),
+            );
           }),
           actions: [
             TextButton(
               onPressed: () {
-                Get.offAll(
+                Get.to(
                   () => const UserProfilePage(),
                   transition: Transition.rightToLeftWithFade,
                   binding: UserProfileBinding(),
