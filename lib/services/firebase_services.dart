@@ -1,22 +1,30 @@
-import 'package:base_getx/app_ctrl.dart';
-import 'package:base_getx/commons/app_dialog.dart';
 import 'package:base_getx/database/shared_preference.dart';
 import 'package:base_getx/modals/user_model.dart';
-import 'package:base_getx/views/mobile/home/home_binding.dart';
-import 'package:base_getx/views/mobile/home/home_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
 class FirebaseServices extends GetxService {
   static FirebaseServices get find => Get.find();
-  AppCtrl appCtrl = Get.find();
 
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   Future<FirebaseServices> init() async {
     return this;
+  }
+
+  UserModel? checkLogin() {
+    final currentUser = _firebaseAuth.currentUser;
+    if (currentUser != null) {
+      UserModel user = UserModel(
+        userName: currentUser.displayName,
+        userId: currentUser.uid,
+        email: currentUser.email,
+      );
+      return user;
+    }
+    return null;
   }
 
   Future<UserModel?> signUpByEmail({
@@ -38,17 +46,16 @@ class FirebaseServices extends GetxService {
             .collection("users")
             .doc(userCredential.user!.uid.toString())
             .set(user.toJson());
-        appCtrl.setCurrentUser(user);
         return user;
       }
-      return null;
     } on FirebaseException catch (e) {
       print('Failed with error code: ${e.code}');
       print(e.message);
     }
+    return null;
   }
 
-  Future<void> loginByEmail({
+  Future<UserModel?> loginByEmail({
     required String email,
     required String password,
   }) async {
@@ -59,8 +66,7 @@ class FirebaseServices extends GetxService {
         password: password,
       );
       if (userCredential.user != null) {
-        final userCredential =
-            await FirebaseAuth.instance.signInWithEmailAndPassword(
+        final userCredential = await _firebaseAuth.signInWithEmailAndPassword(
           email: email,
           password: password,
         );
@@ -70,11 +76,16 @@ class FirebaseServices extends GetxService {
         );
 
         SharedPreference.setUser(user);
-        appCtrl.setCurrentUser(user);
+        return user;
       }
     } on FirebaseException catch (e) {
       print('Failed with error code: ${e.code}');
       print(e.message);
     }
+    return null;
+  }
+
+  void logOut() async {
+    await _firebaseAuth.signOut();
   }
 }

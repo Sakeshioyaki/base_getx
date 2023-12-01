@@ -8,7 +8,7 @@ class HomeVm extends GetxController  with GetSingleTickerProviderStateMixin {
   @override
   void onInit() {
     super.onInit();
-    tabController = TabController(length: 3, vsync: this);
+    tabController = TabController(length: 2, vsync: this);
   }
   @override
   void dispose() {

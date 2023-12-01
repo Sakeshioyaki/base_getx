@@ -6,6 +6,8 @@ import 'package:base_getx/views/mobile/sign_up/sign_up_page.dart';
 import 'package:base_getx/views/mobile/sign_up/sign_up_vm.dart';
 import 'package:base_getx/views/mobile/splash/splash_binding.dart';
 import 'package:base_getx/views/mobile/splash/splash_page.dart';
+import 'package:base_getx/views/mobile/user_profile/user_profile_binding.dart';
+import 'package:base_getx/views/mobile/user_profile/user_profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -22,6 +24,11 @@ class AppPages {
       name: Routes.HOME,
       page: () => HomePage(tag: tag),
       binding: HomeBinding(tag: tag),
+    ),
+    GetPage(
+      name: Routes.USER_PROFILE,
+      page: () => UserProfilePage(tag: tag),
+      binding: UserProfileBinding(tag: tag),
     ),
     GetPage(
       name: Routes.SIGN_UP,

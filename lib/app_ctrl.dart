@@ -4,7 +4,9 @@ import 'dart:ui';
 import 'package:base_getx/database/shared_preference.dart';
 import 'package:base_getx/l10n/localization.dart';
 import 'package:base_getx/modals/user_model.dart';
+import 'package:base_getx/services/firebase_services.dart';
 import 'package:base_getx/utils/logger.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,17 +15,35 @@ class AppCtrl extends GetxController {
   bool isLogin = false;
   //  'en_US', 'vi_VN', 'ja_jp', 'ko_KR',
   Locale currentLocale = LocalizationService.locales[0];
-  UserModel? currentUser ;
+  UserModel? currentUser;
 
   Future<void> checkLogin() async {
-    print('>>> ${Platform.localeName}');
-    String? token = await SharedPreference.getToken();
-    if ((token != null) && token.isNotEmpty) {
+    ///using token
+    // String? token = await SharedPreference.getToken();
+    // if ((token != null) && token.isNotEmpty) {
+    //   isLogin = true;
+    // } else {
+    //   isLogin = false;
+    // }
+    ///using firebase
+    final currentUser1 = FirebaseAuth.instance.currentUser;
+    if (currentUser1 != null) {
+      UserModel user = UserModel(
+        userName: currentUser1.displayName,
+        userId: currentUser1.uid,
+        email: currentUser1.email,
+      );
       isLogin = true;
-    } else {
-      isLogin = false;
+      currentUser = user;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        update();
+      });
+      return;
     }
-    update();
+    isLogin = false;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      update();
+    });
   }
 
   void appInitData() async {
@@ -56,8 +76,19 @@ class AppCtrl extends GetxController {
     update();
   }
 
-  void setCurrentUser( UserModel user){
+  void setCurrentUser(UserModel user) {
     currentUser = user;
+    update();
+  }
+
+  // void setIsLogin(bool value) {
+  //   isLogin = value;
+  //   update();
+  // }
+
+  void clearUser() {
+    currentUser = null;
+    isLogin = false;
     update();
   }
 }

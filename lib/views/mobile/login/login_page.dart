@@ -216,7 +216,7 @@ class LoginPage extends StatelessWidget {
         child: InkWell(
           onTap: () async {
             if (_formKey.currentState!.validate()) {
-              loginVm.loginByEmail();
+              await loginVm.loginByEmail();
             }
           },
           child: Padding(

@@ -12,7 +12,6 @@ import 'package:get/get.dart';
 
 Future initService() async {
   await Get.putAsync(() => FirebaseServices().init());
-
   Get.put<AppCtrl>(AppCtrl());
 }
 
