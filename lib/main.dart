@@ -15,9 +15,32 @@ Future initService() async {
   Get.put<AppCtrl>(AppCtrl());
 }
 
+ class Solution {
+  static String largestGoodInteger(String num) {
+    int current = -1;
+    for (int i = 0; i < num.length - 2;) {
+      if (num[i] == num[i + 1]) {
+        if (num[i] == num[i + 2]) {
+          if (current < int.parse(num[i])) {
+            current = int.parse(num[i]);
+          }
+          i = i + 3;
+        } else {
+          i = i + 2;
+        }
+      } else {
+        i = i + 1;
+      }
+    }
+    if (current >= 0) return "${current}${current}${current}";
+    return "";
+  }
+}
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   F.appFlavor = Flavor.DEVELOPMENT;
+  print('>>>> ${Solution.largestGoodInteger("1221000")}');
   try {
     await Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform);

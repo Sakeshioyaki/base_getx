@@ -1,2 +1,2 @@
 # base_getx
- Base getx flutter
+ Code base for **flutter** project using state management **Getx**
