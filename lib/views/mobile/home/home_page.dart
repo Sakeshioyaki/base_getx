@@ -1,10 +1,7 @@
-import 'package:base_getx/app_ctrl.dart';
-import 'package:base_getx/commons/app_colors.dart';
 import 'package:base_getx/commons/app_images.dart';
 import 'package:base_getx/views/mobile/home/home_vm.dart';
-import 'package:base_getx/views/mobile/user_profile/user_profile_binding.dart';
-import 'package:base_getx/views/mobile/user_profile/user_profile_page.dart';
-import 'package:base_getx/views/mobile/user_profile/user_profile_vm.dart';
+import 'package:base_getx/views/mobile/home/widget/note_widgets.dart';
+import 'package:base_getx/views/mobile/home/widget/todo_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,58 +12,67 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<HomeVm>(builder: (logic) {
-      return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          title: GetBuilder<AppCtrl>(builder: (appCtrl) {
-            return Text(
-              'Welcome, ${appCtrl.currentUser?.userName}',
-              style: const TextStyle(color: AppColors.mainColorOrange),
-            );
-          }),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Get.to(
-                  () => const UserProfilePage(),
-                  transition: Transition.rightToLeftWithFade,
-                  binding: UserProfileBinding(),
-                );
-              },
-              child: const Icon(
-                Icons.person,
-                size: 30,
-                color: Colors.black,
-              ),
-            ),
-          ],
-          bottom: TabBar(
-            controller: logic.tabController,
-            tabs: [
-              Tab(
-                icon: Image.asset(
-                  AppImages.ic_note_active,
-                  width: 20,
-                ),
-              ),
-              Tab(
-                icon: Image.asset(
-                  AppImages.ic_todo_active,
-                  width: 20,
+    HomeVm homeVm = Get.find();
+    final theme = Theme.of(context);
+
+    return Scaffold(
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            children: [
+              buildTabBar(),
+              Expanded(
+                child: TabBarView(
+                  controller: homeVm.tabController,
+                  children: const [
+                    NoteWidgets(),
+                    TodoWidgets(),
+                  ],
                 ),
               ),
             ],
           ),
         ),
-        body: TabBarView(
-          controller: logic.tabController,
-          children: const [
-            Text('djfsajfsklaf'),
-            Text('kokoko'),
-          ],
+      ),
+    );
+  }
+
+  Widget buildTabBar() {
+    return Row(
+      children: [
+        Expanded(
+          child: GetBuilder<HomeVm>(builder: (logic) {
+            return TabBar(
+              controller: logic.tabController,
+              dividerColor: Colors.transparent,
+              indicator:
+                  const UnderlineTabIndicator(borderSide: BorderSide.none),
+              overlayColor:
+                  MaterialStateProperty.all<Color>(Colors.transparent),
+              tabs: const [
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Icon(
+                    Icons.note_alt,
+                    size: 35,
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Icon(
+                    Icons.check_box,
+                    size: 35,
+                  ),
+                )
+              ],
+            );
+          }),
         ),
-      );
-    });
+        const Icon(
+          Icons.person_outline_outlined,
+        )
+      ],
+    );
   }
 }
