@@ -13,4 +13,6 @@ Map<String, String> en = {
   Dictionary.password_require: 'Please enter password',
   Dictionary.forgot_password: 'Forgot password',
   Dictionary.login: 'Login',
+  Dictionary.search: 'Search',
+  Dictionary.cancel: 'Cancel',
 };

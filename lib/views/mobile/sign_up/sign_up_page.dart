@@ -8,7 +8,7 @@ import 'package:base_getx/views/mobile/login/login_binding.dart';
 import 'package:base_getx/views/mobile/login/login_page.dart';
 import 'package:base_getx/views/mobile/sign_up/sign_up_vm.dart';
 import 'package:base_getx/widgets/select_language.dart';
-import 'package:base_getx/widgets/text_form_feild.dart';
+import 'package:base_getx/widgets/text_form_field.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -348,7 +348,7 @@ class SignUpPage extends GetView<SignUpVm> {
   }
 
   Widget buildFieldEmail() {
-    return TextFieldCommon(
+    return TextFormFieldCommon(
       validator: (value) {
         if (value == null || value.isEmpty) {
           return Dictionary.email_require.tr;
@@ -373,7 +373,7 @@ class SignUpPage extends GetView<SignUpVm> {
   }
 
   Widget buildFieldUserName() {
-    return TextFieldCommon(
+    return TextFormFieldCommon(
       validator: (value) {
         if (value == null || value.isEmpty) {
           return Dictionary.user_name.tr;
@@ -398,7 +398,7 @@ class SignUpPage extends GetView<SignUpVm> {
   }
 
   Widget buildFieldPassword() {
-    return TextFieldCommon(
+    return TextFormFieldCommon(
       validator: (value) {
         if (value == null || value.isEmpty) {
           return Dictionary.password_require.tr;

@@ -13,4 +13,7 @@ Map<String, String> ko = {
   Dictionary.password_require: '비밀번호를 입력 해주세요',
   Dictionary.forgot_password: '비밀번호를 잊으 셨나요',
   Dictionary.login: '로그인',
+  Dictionary.search: '찾다',
+  Dictionary.cancel: '취소',
+
 };

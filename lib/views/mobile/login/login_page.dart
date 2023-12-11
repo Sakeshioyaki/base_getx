@@ -6,7 +6,7 @@ import 'package:base_getx/views/mobile/login/login_vm.dart';
 import 'package:base_getx/views/mobile/sign_up/sign_up_binding.dart';
 import 'package:base_getx/views/mobile/sign_up/sign_up_page.dart';
 import 'package:base_getx/widgets/select_language.dart';
-import 'package:base_getx/widgets/text_form_feild.dart';
+import 'package:base_getx/widgets/text_form_field.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -263,7 +263,7 @@ class LoginPage extends StatelessWidget {
   }
 
   Widget buildFieldEmail() {
-    return TextFieldCommon(
+    return TextFormFieldCommon(
       validator: (value) {
         if (value == null || value.isEmpty) {
           return Dictionary.email_require.tr;
@@ -288,7 +288,7 @@ class LoginPage extends StatelessWidget {
   }
 
   Widget buildFieldPassword() {
-    return TextFieldCommon(
+    return TextFormFieldCommon(
       obscureText: true,
       validator: (value) {
         if (value == null || value.isEmpty) {

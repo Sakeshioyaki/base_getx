@@ -11,4 +11,6 @@ class Dictionary{
    static String user_name = 'user_name';
    static String password = 'password';
    static String forgot_password = 'forgot_password';
+   static String search = 'search';
+   static String cancel = 'cancel';
 }

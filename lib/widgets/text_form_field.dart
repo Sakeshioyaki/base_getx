@@ -2,7 +2,7 @@ import 'package:base_getx/commons/enums/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class TextFieldCommon extends StatelessWidget {
+class TextFormFieldCommon extends StatelessWidget {
   final TextEditingController? controller;
   final String? hintText;
   final TextStyle? hintStyle;
@@ -10,7 +10,7 @@ class TextFieldCommon extends StatelessWidget {
   final Widget? suffixIcon;
   final bool obscureText;
 
-  const TextFieldCommon({
+  const TextFormFieldCommon({
     super.key,
     this.controller,
     this.hintText,

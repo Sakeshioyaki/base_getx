@@ -16,13 +16,11 @@ class AppMobile extends StatelessWidget {
     return GetBuilder<AppCtrl>(builder: (logic) {
       return OverlaySupport(
         child: GetMaterialApp(
-          // theme: ThemeData.from(colorScheme: AppColors.lightScheme),
-          // darkTheme: ThemeData.from(colorScheme: AppColors.darkScheme),
-          // themeMode: ThemeMode.light,
+          defaultTransition: Transition.noTransition,
           opaqueRoute: Get.isOpaqueRouteDefault,
           popGesture: Get.isPopGestureEnable,
           initialBinding: SplashBinding(),
-          theme: AppTheme.lightTheme,    // Light theme nè.
+          theme: AppTheme.lightTheme, // Light theme nè.
           darkTheme: AppTheme.darkTheme, // Dark theme nè.
           themeMode: ThemeMode.system,
           home: const SplashPage(), locale: logic.currentLocale,

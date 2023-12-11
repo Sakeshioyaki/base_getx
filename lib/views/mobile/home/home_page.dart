@@ -14,14 +14,13 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     HomeVm homeVm = Get.find();
     final theme = Theme.of(context);
-
     return Scaffold(
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             children: [
-              buildTabBar(),
+              buildTabBar(theme),
               Expanded(
                 child: TabBarView(
                   controller: homeVm.tabController,
@@ -38,7 +37,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget buildTabBar() {
+  Widget buildTabBar(ThemeData theme) {
     return Row(
       children: [
         Expanded(
@@ -69,8 +68,9 @@ class HomePage extends StatelessWidget {
             );
           }),
         ),
-        const Icon(
-          Icons.person_outline_outlined,
+         Icon(
+          Icons.person,
+          color: theme.colorScheme.onPrimaryContainer,
         )
       ],
     );
