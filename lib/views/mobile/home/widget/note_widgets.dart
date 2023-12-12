@@ -37,13 +37,39 @@ class NoteWidgets extends StatelessWidget {
             ),
           ),
         ),
-        const Text('djfsajfsklaf'),
-        const Icon(
-          Icons.add_a_photo,
-          color: Colors.red,
-          size: 100,
-        )
+        const SizedBox(height: 20),
+        Expanded(
+          child: buildNotes(context),
+        ),
       ],
+    );
+  }
+
+  Widget buildNotes(BuildContext context) {
+    return Column(
+      children: [
+        buildNoteItem(context),
+      ],
+    );
+  }
+
+  Widget buildNoteItem(context) {
+    var theme = Theme.of(context);
+    return Card(
+      color: Theme.of(context).colorScheme.surfaceVariant,
+      elevation: 0,
+      child: Container(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 20,
+          vertical: 20,
+        ),
+        child: const Column(
+          children: [
+            Text('dsfdfsf'),
+            Text('sgfahjfgdj'),
+          ],
+        ),
+      ),
     );
   }
 }
