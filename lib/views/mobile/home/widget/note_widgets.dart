@@ -10,26 +10,31 @@ class NoteWidgets extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme = Theme.of(context);
     return Column(
       children: [
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         Hero(
           tag: "textSearch",
           child: Material(
             child: TextFieldCommon(
-                hintText: Dictionary.search.tr,
-                hintStyle:
-                    const TextStyle(fontFamily: AppConstants.fontK2D, fontSize: 18),
-                prefixIcon: const Icon(
-                  Icons.search,
-                  size: 20,
-                ),
-                onTap: () {
-                  Get.to(
-                    () => const SearchPage(),
-                    duration: Duration(milliseconds: 500),
-                  );
-                }),
+              hintText: Dictionary.search.tr,
+              hintStyle: const TextStyle(
+                fontFamily: AppConstants.fontK2D,
+                fontSize: 18,
+              ),
+              prefixIcon: const Icon(
+                Icons.search,
+                size: 20,
+              ),
+              background: theme.colorScheme.secondaryContainer.withOpacity(0.5),
+              onTap: () {
+                Get.to(
+                  () => const SearchPage(),
+                  duration: const Duration(milliseconds: 800),
+                );
+              },
+            ),
           ),
         ),
         const Text('djfsajfsklaf'),

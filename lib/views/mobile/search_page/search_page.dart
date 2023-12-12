@@ -10,25 +10,28 @@ class SearchPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme = Theme.of(context);
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10,),
           child: Column(
             children: [
               Row(
                 children: [
-                  const Expanded(
+                  Expanded(
                     child: Hero(
                       tag: 'textSearch',
                       child: Material(
                         child: TextFieldCommon(
                           autofocus: true,
-                          hintStyle: TextStyle(
+                          hintStyle: const TextStyle(
                             fontFamily: AppConstants.fontK2D,
                             fontSize: 18,
                           ),
-                          prefixIcon: Icon(
+                          background: theme.colorScheme.secondaryContainer
+                              .withOpacity(0.5),
+                          prefixIcon: const Icon(
                             Icons.search,
                             size: 20,
                           ),

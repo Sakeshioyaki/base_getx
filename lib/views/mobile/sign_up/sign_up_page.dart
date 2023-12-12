@@ -37,60 +37,58 @@ class SignUpPage extends GetView<SignUpVm> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
-        child: GetBuilder<AppCtrl>(builder: (logic) {
-          return Column(
-            children: [
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                      right: 24,
-                      left: 24,
-                      top: 10,
-                      bottom: 40,
-                    ),
-                    child: SafeArea(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const SelectLanguage(),
-                          const SizedBox(height: 50),
-                          buildLoginText(),
-                          const SizedBox(height: 10),
-                          Image.asset(
-                            AppImages.logo_app,
-                            width: Get.width * 0.5,
+        child: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    right: 24,
+                    left: 24,
+                    top: 10,
+                    bottom: 40,
+                  ),
+                  child: SafeArea(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SelectLanguage(),
+                        const SizedBox(height: 50),
+                        buildLoginText(),
+                        const SizedBox(height: 10),
+                        Image.asset(
+                          AppImages.logo_app,
+                          width: Get.width * 0.5,
+                        ),
+                        const SizedBox(height: 10),
+                        buildLoginByGoogleFacebook(),
+                        const SizedBox(height: 30),
+                        buildOr(),
+                        const SizedBox(height: 30),
+                        Form(
+                          key: _formKey,
+                          child: Column(
+                            children: <Widget>[
+                              buildFieldEmail(),
+                              const SizedBox(height: 20),
+                              buildFieldUserName(),
+                              const SizedBox(height: 20),
+                              buildFieldPassword(),
+                            ],
                           ),
-                          const SizedBox(height: 10),
-                          buildLoginByGoogleFacebook(),
-                          const SizedBox(height: 30),
-                          buildOr(),
-                          const SizedBox(height: 30),
-                          Form(
-                            key: _formKey,
-                            child: Column(
-                              children: <Widget>[
-                                buildFieldEmail(),
-                                const SizedBox(height: 20),
-                                buildFieldUserName(),
-                                const SizedBox(height: 20),
-                                buildFieldPassword(),
-                              ],
-                            ),
-                          ),
-                          const SizedBox(height: 10),
-                          buildTextNoAccount(),
-                          const SizedBox(height: 50),
-                          buildButtonSignIn()
-                        ],
-                      ),
+                        ),
+                        const SizedBox(height: 10),
+                        buildTextNoAccount(),
+                        const SizedBox(height: 50),
+                        buildButtonSignIn()
+                      ],
                     ),
                   ),
                 ),
               ),
-            ],
-          );
-        }),
+            ),
+          ],
+        ),
       ),
     );
   }

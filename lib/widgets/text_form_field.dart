@@ -1,3 +1,4 @@
+import 'package:base_getx/commons/app_colors.dart';
 import 'package:base_getx/commons/enums/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -27,6 +28,13 @@ class TextFormFieldCommon extends StatelessWidget {
       controller: controller,
       obscureText: obscureText,
       // autofocus: true,
+      style: const TextStyle(
+        color: Colors.black,
+        fontSize: 14,
+        fontFamily: AppConstants.fontInter,
+        fontWeight: FontWeight.w500,
+        letterSpacing: 2.40,
+      ),
       decoration: InputDecoration(
         hintText: hintText?.tr,
         hintStyle: hintStyle,

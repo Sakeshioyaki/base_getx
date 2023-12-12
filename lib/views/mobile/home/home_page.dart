@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             children: [
-              buildTabBar(theme),
+              buildTabBar(theme, homeVm),
               Expanded(
                 child: TabBarView(
                   controller: homeVm.tabController,
@@ -37,38 +37,34 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget buildTabBar(ThemeData theme) {
+  Widget buildTabBar(ThemeData theme, HomeVm homeVm) {
     return Row(
       children: [
         Expanded(
-          child: GetBuilder<HomeVm>(builder: (logic) {
-            return TabBar(
-              controller: logic.tabController,
-              dividerColor: Colors.transparent,
-              indicator:
-                  const UnderlineTabIndicator(borderSide: BorderSide.none),
-              overlayColor:
-                  MaterialStateProperty.all<Color>(Colors.transparent),
-              tabs: const [
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: Icon(
-                    Icons.note_alt,
-                    size: 35,
-                  ),
+          child: TabBar(
+            controller: homeVm.tabController,
+            dividerColor: Colors.transparent,
+            indicator: const UnderlineTabIndicator(borderSide: BorderSide.none),
+            overlayColor: MaterialStateProperty.all<Color>(Colors.transparent),
+            tabs: const [
+              Align(
+                alignment: Alignment.centerRight,
+                child: Icon(
+                  Icons.note_alt,
+                  size: 35,
                 ),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Icon(
-                    Icons.check_box,
-                    size: 35,
-                  ),
-                )
-              ],
-            );
-          }),
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Icon(
+                  Icons.check_box,
+                  size: 35,
+                ),
+              )
+            ],
+          ),
         ),
-         Icon(
+        Icon(
           Icons.person,
           color: theme.colorScheme.onPrimaryContainer,
         )

@@ -3,7 +3,7 @@ import 'package:base_getx/l10n/localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SelectLanguage extends StatelessWidget{
+class SelectLanguage extends StatelessWidget {
   const SelectLanguage({super.key});
 
   @override
@@ -17,19 +17,22 @@ class SelectLanguage extends StatelessWidget{
         ),
       );
     });
-    return GetBuilder<AppCtrl>(builder: (logic) {
-      return Align(
-        alignment: Alignment.centerRight,
-        child: DropdownButton<Locale>(
-          items: listItem,
-          value: logic.currentLocale,
-          onChanged: (selectValue) {
-            if (logic.currentLocale != selectValue) {
-              logic.setLocate(selectValue ?? LocalizationService.locales[0]);
-            }
-          },
-        ),
-      );
-    });
+    return GetBuilder<AppCtrl>(
+        filter: (logic) => logic.currentLocale,
+        builder: (logic) {
+          return Align(
+            alignment: Alignment.centerRight,
+            child: DropdownButton<Locale>(
+              items: listItem,
+              value: logic.currentLocale,
+              onChanged: (selectValue) {
+                if (logic.currentLocale != selectValue) {
+                  logic
+                      .setLocate(selectValue ?? LocalizationService.locales[0]);
+                }
+              },
+            ),
+          );
+        });
   }
 }
