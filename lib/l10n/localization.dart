@@ -9,13 +9,10 @@ import 'intl_ja.dart';
 import 'intl_vi.dart';
 
 class LocalizationService extends Translations {
-// fallbackLocale là locale default nếu locale được set không nằm trong những Locale support
   static const fallbackLocale = Locale('en', 'US');
 
-// language code của những locale được support
   static final langCodes = ['en', 'vi', 'ko', 'ja'];
 
-// các Locale được support
   static final locales = [
     const Locale('en', 'US'),
     const Locale('vi', 'VN'),
@@ -23,7 +20,6 @@ class LocalizationService extends Translations {
     const Locale('ko', 'KR'),
   ];
 
-// cái này là Map các language được support đi kèm với mã code của lang đó: cái này dùng để đổ data vào Dropdownbutton và set language mà không cần quan tâm tới language của hệ thống
   static final langs = LinkedHashMap.from(
       {'en': 'English', 'vi': 'Tiếng Việt', 'ja': 'Japan', 'ko': 'Korean'});
 
