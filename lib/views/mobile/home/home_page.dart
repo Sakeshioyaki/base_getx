@@ -1,4 +1,6 @@
 import 'package:base_getx/commons/app_images.dart';
+import 'package:base_getx/views/mobile/create_note/create_note_binding.dart';
+import 'package:base_getx/views/mobile/create_note/create_note_page.dart';
 import 'package:base_getx/views/mobile/home/home_vm.dart';
 import 'package:base_getx/views/mobile/home/widget/note_widgets.dart';
 import 'package:base_getx/views/mobile/home/widget/todo_widgets.dart';
@@ -34,6 +36,15 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Get.to(
+            () => const CreateNotePage(),
+            binding: CreateNoteBinding(),
+          );
+        },
+        child: const Icon(Icons.add),
+      ),
     );
   }
 
@@ -50,14 +61,14 @@ class HomePage extends StatelessWidget {
               Align(
                 alignment: Alignment.centerRight,
                 child: Icon(
-                  Icons.note_alt,
+                  Icons.note_alt_outlined,
                   size: 35,
                 ),
               ),
               Align(
                 alignment: Alignment.centerLeft,
                 child: Icon(
-                  Icons.check_box,
+                  Icons.check_box_outlined,
                   size: 35,
                 ),
               )

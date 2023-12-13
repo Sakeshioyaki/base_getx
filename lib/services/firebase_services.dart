@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:base_getx/database/shared_preference.dart';
+import 'package:base_getx/modals/note_model.dart';
 import 'package:base_getx/modals/user_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -49,8 +52,8 @@ class FirebaseServices extends GetxService {
         return user;
       }
     } on FirebaseException catch (e) {
-      print('Failed with error code: ${e.code}');
-      print(e.message);
+      log('Failed with error code: ${e.code}');
+      log(e.message ?? '');
     }
     return null;
   }
@@ -79,8 +82,48 @@ class FirebaseServices extends GetxService {
         return user;
       }
     } on FirebaseException catch (e) {
-      print('Failed with error code: ${e.code}');
-      print(e.message);
+      log('Failed with error code: ${e.code}');
+      log(e.message ?? '');
+    }
+    return null;
+  }
+
+  Future<List<NoteModel>> getListNotes() async {
+    List<NoteModel> currNotes = [];
+    try {
+      await _firestore
+          .collection('user')
+          .doc(_firebaseAuth.currentUser?.uid)
+          .collection('notes')
+          .get()
+          .then(
+        (querySnapshot) {
+          for (var docSnapshot in querySnapshot.docs) {
+            NoteModel note = NoteModel.fromJson(docSnapshot.data());
+            currNotes.add(note);
+          }
+        },
+        onError: (e) => log("Error getListNotes: $e"),
+      );
+    } on FirebaseException catch (e) {
+      log('Failed getListNotes with error code: ${e.code}');
+      log(e.message ?? '');
+    }
+    return currNotes;
+  }
+
+  Future<String?> addNote(NoteModel note) async {
+    try {
+      String idNote = await _firestore
+          .collection('user')
+          .doc(_firebaseAuth.currentUser?.uid)
+          .collection('notes')
+          .add(note.toJson())
+          .then((documentSnapshot) => documentSnapshot.id);
+      return idNote;
+    } on FirebaseException catch (e) {
+      log('Failed getListNotes with error code: ${e.code}');
+      log(e.message ?? '');
     }
     return null;
   }

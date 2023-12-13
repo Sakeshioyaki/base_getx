@@ -81,11 +81,6 @@ class AppCtrl extends GetxController {
     update();
   }
 
-  // void setIsLogin(bool value) {
-  //   isLogin = value;
-  //   update();
-  // }
-
   void clearUser() {
     currentUser = null;
     isLogin = false;

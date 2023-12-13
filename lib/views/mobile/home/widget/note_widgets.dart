@@ -1,6 +1,8 @@
 import 'package:base_getx/commons/enums/app_constants.dart';
 import 'package:base_getx/l10n/enum_dictionary.dart';
+import 'package:base_getx/modals/note_model.dart';
 import 'package:base_getx/views/mobile/search_page/search_page.dart';
+import 'package:base_getx/widgets/note_item.dart';
 import 'package:base_getx/widgets/text_feild.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -39,37 +41,21 @@ class NoteWidgets extends StatelessWidget {
         ),
         const SizedBox(height: 20),
         Expanded(
-          child: buildNotes(context),
+          child: buildNotes(theme: theme),
         ),
       ],
     );
   }
 
-  Widget buildNotes(BuildContext context) {
+  Widget buildNotes({required ThemeData theme}) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        buildNoteItem(context),
+        NoteItem(
+          theme: theme,
+          note: NoteModel(title: 'ddddddd', content: 'kkkkkkkkk'),
+        ),
       ],
-    );
-  }
-
-  Widget buildNoteItem(context) {
-    var theme = Theme.of(context);
-    return Card(
-      color: Theme.of(context).colorScheme.surfaceVariant,
-      elevation: 0,
-      child: Container(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 20,
-          vertical: 20,
-        ),
-        child: const Column(
-          children: [
-            Text('dsfdfsf'),
-            Text('sgfahjfgdj'),
-          ],
-        ),
-      ),
     );
   }
 }

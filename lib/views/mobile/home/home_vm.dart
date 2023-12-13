@@ -1,27 +1,30 @@
 import 'package:base_getx/modals/note_model.dart';
+import 'package:base_getx/services/firebase_services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomeVm extends GetxController with GetSingleTickerProviderStateMixin {
-  var count = 0;
+  FirebaseServices firebaseServices = Get.find();
+
   late final TabController tabController;
   final TextEditingController searchTextController = TextEditingController();
-  List<NoteModel> resultSearch =[];
   int indexTab = 0;
+  List<NoteModel> listNotes = [];
 
   @override
-  void onInit() {
+  Future<void> onInit() async {
     super.onInit();
     tabController = TabController(
       initialIndex: 0,
       length: 2,
       vsync: this,
     );
-    tabController.addListener(() {
-      print('index- ${tabController.index}');
-      indexTab = tabController.index;
-      update();
-    });
+    // tabController.addListener(() {
+    //   indexTab = tabController.index;
+    //   update();
+    // });
+    listNotes = await firebaseServices.getListNotes();
+    update();
   }
 
   @override
@@ -30,12 +33,5 @@ class HomeVm extends GetxController with GetSingleTickerProviderStateMixin {
     super.dispose();
   }
 
-  void search(){
-
-  }
-
-  void increment() {
-    count++;
-    update();
-  }
+  void search() {}
 }

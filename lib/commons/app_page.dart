@@ -1,4 +1,6 @@
 import 'package:base_getx/commons/enums/app_routes.dart';
+import 'package:base_getx/views/mobile/create_note/create_note_binding.dart';
+import 'package:base_getx/views/mobile/create_note/create_note_page.dart';
 import 'package:base_getx/views/mobile/home/home_binding.dart';
 import 'package:base_getx/views/mobile/home/home_page.dart';
 import 'package:base_getx/views/mobile/sign_up/sign_up_binding.dart';
@@ -34,6 +36,11 @@ class AppPages {
       name: Routes.SIGN_UP,
       page: () => SignUpPage(tag: tag),
       binding: SignUpBinding(tag: tag),
+    ),
+    GetPage(
+      name: Routes.CREATE_NOTE,
+      page: () => CreateNotePage(tag: tag),
+      binding: CreateNoteBinding(tag: tag),
     ),
   ];
 }
